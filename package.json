@@ -1,0 +1,37 @@
+{
+  "name": "milkdistributorapi",
+  "version": "1.0.0",
+  "description": "Milk distributor API to manage, add and update orders",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"node ./index.js\" \"npm run server\"",
+    "server": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yashwanth-Thota/milk-distributor-api.git"
+  },
+  "author": "Yashwanth Thota",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yashwanth-Thota/milk-distributor-api/issues"
+  },
+  "homepage": "https://github.com/yashwanth-Thota/milk-distributor-api#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "cls-rtracer": "^2.6.2",
+    "concurrently": "^7.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-joi-validation": "^5.0.1",
+    "http-status-codes": "^2.2.0",
+    "json-parser": "^3.1.2",
+    "json-server": "^0.17.0",
+    "swagger-ui-express": "^4.5.0",
+    "uuid": "^8.3.2",
+    "winston": "^3.8.1"
+  }
+}

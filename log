@@ -1,0 +1,12 @@
+
+> milkdistributorapi@1.0.0 start
+> concurrently "node ./index.js" "npm run server"
+
+[1] 
+[1] > milkdistributorapi@1.0.0 server
+[1] > node server.js
+[1] 
+[1] JSON Server is running
+[0] {"message":"milkdistributor server has started! at port: 4849","level":"info","timestamp":"2022-08-11T22:04:37.463Z"}
+[1] npm run server exited with code SIGINT
+[0] node ./index.js exited with code SIGINT

@@ -1,0 +1,50 @@
+{
+  "catalog": [
+    {
+      "id": 1,
+      "date": "2022-08-11",
+      "openQuantity": 20,
+      "available": 10
+    },
+    {
+      "date": "2022-08-12",
+      "openQuantity": 90,
+      "available": 80,
+      "id": 2
+    },
+    {
+      "date": "2022-7-5}",
+      "openQuantity": null,
+      "available": null,
+      "id": 3
+    }
+  ],
+  "orders": [
+    {
+      "location": "delhi",
+      "phone": "123123123",
+      "quantity": 10,
+      "id": "68b7e3d3-cf2b-4eee-b5d9-d779e691e491",
+      "status": "pending",
+      "date": "2022-08-12"
+    },
+    {
+      "location": "delhiasdaasdas",
+      "phone": "123123123",
+      "quantity": 10,
+      "id": "7270bfe0-853e-45b0-b277-53d36e2b5e02",
+      "date": "2022-7-5}",
+      "status": "pending"
+    },
+    {
+      "status": "pending",
+      "id": "7270bfe0-853e-45b0-b277-53d36e2b5e02as",
+      "date": "2022-7-5}"
+    },
+    {
+      "status": "pending",
+      "id": "7270bfe0-853e-45b0-b277-53d36e2b5e02asasd",
+      "date": "2022-7-5"
+    }
+  ]
+}

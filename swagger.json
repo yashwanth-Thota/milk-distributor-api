@@ -1,0 +1,302 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "0.0.1",
+      "title": "Milk Distributor API"
+    },
+    "host": "localhost:4849",
+    "basePath": "/",
+    "schemes": ["http", "https"],
+    "consumes": ["application/json",""],
+    "produces": ["application/json", "text/plain"],
+    "paths": {
+        "/ping": {
+           "get": {
+              "description": "Health check endpoint.",
+              "operationId": "ping",
+              "tags":["ping"],
+              "responses": {
+                  "200": {
+                  "description": "This service is healthy.",
+                  "schema": {
+                      "$ref": "#/definitions/PingResponse"
+                  }
+                  },
+                  "default": {
+                  "description": "Error payload.",
+                  "schema": {
+                      "$ref": "#/definitions/ErrorResponse"
+                  }
+                  }
+              }
+            }
+        },
+        "/add":{
+            "post":{
+              "tags":["order"],
+              "description":"create new order",
+              "operationId":"createNewOrder",
+              "parameters":[
+                {
+                  "name":"order",
+                  "type":"object",
+                  "in":"body",
+                  "required":true,
+                  "schema":{
+                    "$ref":"#/definitions/order"
+                  }
+                }
+              ],
+              "responses":{
+                "200": {
+                  "description": "Success",
+                  "schema": {
+                    "$ref": "#/definitions/message"
+                  }
+                },
+                "default": {
+                  "description": "Error",
+                  "schema": {
+                    "$ref": "#/definitions/ErrorResponse"
+                  }
+                }
+              }
+            }
+        },
+        "/update/{id}":{
+            "patch":{
+              "tags":["order"],
+              "description":"update an order",
+              "operationId":"updateOrder",
+              "parameters":[
+                {
+                  "name":"body",
+                  "type":"object",
+                  "in":"body",
+                  "required":true
+                }
+              ],
+              "responses":{
+                "200": {
+                  "description": "Success",
+                  "schema": {
+                    "$ref": "#/definitions/message"
+                  }
+                },
+                "default": {
+                  "description": "Error",
+                  "schema": {
+                    "$ref": "#/definitions/ErrorResponse"
+                  }
+                }
+              }
+            }
+        },
+        "/updateStatus/{id}":{
+            "post":{
+              "tags":["order"],
+              "description":"update status of a order",
+              "operationId":"updateStatus",
+              "parameters":[
+                {
+                  "name":"body",
+                  "type":"object",
+                  "in":"body",
+                  "required":true,
+                  "schema":{
+                    "$ref":"#/definitions/updateStatus"
+                  }
+                }
+              ],
+              "responses":{
+                "200": {
+                  "description": "Success",
+                  "schema": {
+                    "$ref": "#/definitions/message"
+                  }
+                },
+                "default": {
+                  "description": "Error",
+                  "schema": {
+                    "$ref": "#/definitions/ErrorResponse"
+                  }
+                }
+              }
+            }
+        },
+        "/delete/{id}":{
+            "delete":{
+                "tags":["order"],
+                "description":"delete an order",
+                "operationId":"deleteOrder",
+                "parameters":[
+                    {
+                    "name":"id",
+                    "type":"string",
+                    "in":"path",
+                    "required":true
+                    }
+                ],
+                "responses":{
+                    "200": {
+                    "description": "Success",
+                    "schema": {
+                        "$ref": "#/definitions/message"
+                    }
+                    },
+                    "default": {
+                    "description": "Error",
+                    "schema": {
+                        "$ref": "#/definitions/ErrorResponse"
+                    }
+                    }
+                }
+            }
+        },
+        "checkCapacity/{date}":{
+            "delete":{
+                "tags":["order"],
+                "description":"check availability",
+                "operationId":"checkCapacity",
+                "parameters":[
+                    {
+                    "name":"date",
+                    "type":"string",
+                    "in":"path",
+                    "required":true
+                    }
+                ],
+                "responses":{
+                    "200": {
+                    "description": "Success",
+                    "schema": {
+                        "$ref": "#/definitions/message"
+                    }
+                    },
+                    "default": {
+                    "description": "Error",
+                    "schema": {
+                        "$ref": "#/definitions/ErrorResponse"
+                    }
+                    }
+                }
+            }
+        },
+        "admin/updateAvailability":{
+            "patch":{
+                "tags":["admin"],
+                "description":"update an availability for a date",
+                "operationId":"updateAvailability",
+                "parameters":[
+                  {
+                    "name":"body",
+                    "type":"object",
+                    "in":"body",
+                    "required":true
+                  }
+                ],
+                "responses":{
+                  "200": {
+                    "description": "Success",
+                    "schema": {
+                      "$ref": "#/definitions/updateAvailability"
+                    }
+                  },
+                  "default": {
+                    "description": "Error",
+                    "schema": {
+                      "$ref": "#/definitions/ErrorResponse"
+                    }
+                  }
+                }
+              }
+        }
+    },
+    "definitions": {
+        "updateAvailability":{
+          "type":"object",
+          "required": ["quantity","date"],
+          "properties":{
+            "quantity":{
+              "type":"number"
+            },
+            "date":{
+              "type":"string"
+            }
+          } 
+        },
+        "updateStatus":{
+            "type":"object",
+            "required": ["status"],
+            "properties":{
+              "status":{
+                "type":"string",
+                "enum":["placed","packed","dispatched","delivered"]
+              }
+            } 
+          },
+        "order": {
+          "required": ["order"],
+          "properties": {
+            "details": {
+              "type": "object",
+              "properties":{
+                    "location":{
+                        "type":"string"
+                    },
+                    "phone":{
+                        "type":"string"
+                    },
+                    "quantity":{
+                        "type":"integer"
+                    }
+                }
+              }
+            }
+        },
+        "ErrorResponse": {
+          "required": ["message"],
+          "properties": {
+            "message": {
+              "type": "string"
+            },
+            "statusCode": {
+              "type": "string"
+            }
+          }
+        },
+        "PingResponse": {
+          "type": "object",
+          "required": ["pong"],
+          "properties": {
+            "pong": {
+              "type": "boolean"
+            }
+          }
+        ,  
+        "Message":{
+         "type": "object",
+          "required": ["message"],
+          "properties": {
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+        }
+    },
+      "tags": [
+          {
+              "description": "API health check",
+              "name": "ping"
+          },
+          {
+            "description": "API to manager orders",
+            "name": "order"
+          },
+          {
+            "description": "API to add availability",
+            "name": "admin"
+          }
+      ]
+}
