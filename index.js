@@ -56,6 +56,7 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.listen(4849, () => {
+const PORT = process.env.PORT ||5000;
+app.listen(PORT, () => {
     logger.info(`milkdistributor server has started! at port: 4849`)
 })
